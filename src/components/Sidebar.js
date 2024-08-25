@@ -30,10 +30,12 @@ const Sidebar = () => {
           ) : (
             <div
               className={`mb-5 p-[2px] rounded-sm ${
-                acitvePath === SIDEBAR_LINKS[eachLink].path
+                acitvePath === SIDEBAR_LINKS[eachLink].path && isDarkMode
                   ? "bg-[#343A40]"
+                  : acitvePath === SIDEBAR_LINKS[eachLink].path && !isDarkMode
+                  ? "#E9EAEB"
                   : ""
-              }`}
+              } `}
             >
               {cloneElement(SIDEBAR_LINKS[eachLink].icon, {
                 style: {

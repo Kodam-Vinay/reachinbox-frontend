@@ -17,7 +17,7 @@ function MyToggleButton() {
         id="toggle-checkbox"
         className="hidden"
       />
-      <label className="toggle-label" htmlFor="toggle-checkbox">
+      <label className="toggle-label m-1" htmlFor="toggle-checkbox">
         <span className="toggle-slider"></span>
         <span className="toggle-slider"></span>
       </label>
