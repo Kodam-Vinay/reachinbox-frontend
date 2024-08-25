@@ -8,8 +8,8 @@ export function AuthHeader() {
   return (
     <div
       className={`${
-        isDarkMode ? "bg-[#25262B]" : "bg-[#DEDEDE]"
-      } h-[10%] flex flex-col items-center justify-center`}
+        isDarkMode ? "bg-[#1F1F1F]" : "bg-[#FFFFFF]"
+      } h-[10%] flex flex-col items-center justify-center border-b-[#25262B]`}
     >
       <img
         src={LoginHeaderDarkLogo}

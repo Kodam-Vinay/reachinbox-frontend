@@ -2,17 +2,23 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Body from "../components/Body";
 import Auth from "../auth/Auth";
 import ErrorPage from "../pages/ErrorPage";
+import Home from "../pages/Home";
 
 const AppRoutes = () => {
   const browserRouter = createBrowserRouter([
     {
-      path: "/",
+      path: "",
       element: <Body />,
       errorElement: <ErrorPage />,
-      children: [],
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+      ],
     },
     {
-      path: "auth",
+      path: "/auth",
       element: <Auth />,
     },
   ]);

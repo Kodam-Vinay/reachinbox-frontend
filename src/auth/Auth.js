@@ -1,13 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { AuthHeader } from "../components/AuthHeader";
-import { toggleTheme } from "../redux/slices/themeSlice";
 import GoogleLogo from "../svgs/GoogleLogo";
 import { useEffect, useState } from "react";
 import { storeToastError } from "../utils/constants";
 import { loginRequest } from "../api/apiCalls";
 
 const Auth = () => {
-  const dipatch = useDispatch();
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState("");
   const isDarkMode = useSelector(
@@ -22,7 +20,7 @@ const Auth = () => {
 
   const handleLogin = async () => {
     await loginRequest({
-      apiUrl: "auth/google-login",
+      apiUrl: "auth/google-login?redirect_to=http://localhost:3000",
       setError,
       setIsError,
     });
@@ -30,7 +28,6 @@ const Auth = () => {
 
   return (
     <div className="h-full w-full">
-      <button onClick={() => dipatch(toggleTheme())}>click</button>
       <AuthHeader />
       <div
         className={`h-[90%] flex flex-col items-center justify-center ${
