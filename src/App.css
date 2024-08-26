@@ -7,13 +7,8 @@
   display: inline-block;
   width: 55px;
   height: 32px;
-  background-color: #ccc;
   border-radius: 34px;
   transition: background-color 0.2s ease-in-out;
-}
-
-.toggle-checkbox {
-  display: none;
 }
 
 .toggle-label {
@@ -31,7 +26,6 @@
   left: 0;
   width: 24px;
   height: 24px;
-  background-color: #fff;
   border-radius: 50%;
   transition: transform 0.2s ease-in-out;
 }

@@ -10,7 +10,7 @@ const DownArrowLogo = (props) => (
     <g clipPath="url(#clip0_2_2)">
       <path
         d="M1.5799 0.326446L0.399902 1.51311L6.9999 8.10645L13.5999 1.50645L12.4199 0.326446L6.9999 5.74645L1.5799 0.326446Z"
-        fill="#454F5B"
+        fill={props?.fill ? props?.fill : "#454F5B"}
       />
     </g>
     <defs>

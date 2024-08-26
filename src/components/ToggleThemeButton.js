@@ -19,9 +19,12 @@ function MyToggleButton() {
   const handleToggle = () => {
     setIsChecked(!isChecked);
   };
-  console.log(isChecked);
   return (
-    <div className="toggle-button">
+    <div
+      className={`toggle-button  border ${
+        isDarkMode ? "bg-transparent" : "bg-[#E9EAEC]"
+      }`}
+    >
       <input
         type="checkbox"
         checked={isChecked}
@@ -31,7 +34,7 @@ function MyToggleButton() {
       />
 
       <label
-        className="toggle-label m-1 flex items-center bg-transparent"
+        className={`toggle-label m-[3px] flex items-center`}
         htmlFor="toggle-checkbox"
       >
         {!isDarkMode && (
@@ -39,13 +42,13 @@ function MyToggleButton() {
             <span className="mb-2 ml-1">
               <FaMoon color="#E8C364" />
             </span>
-            <span className="toggle-slider ml-6"></span>
+            <span className="toggle-slider ml-6 bg-[#FFFFFF]"></span>
           </>
         )}
 
         {isDarkMode && (
           <>
-            <span className="toggle-slider"></span>
+            <span className="toggle-slider bg-[#888686]"></span>
             <span className="ml-7 mb-2">
               <FiSun color="#E8C364" />
             </span>

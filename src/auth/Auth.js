@@ -4,6 +4,8 @@ import GoogleLogo from "../svgs/GoogleLogo";
 import { useEffect, useState } from "react";
 import { storeToastError } from "../utils/constants";
 import { loginRequest } from "../api/apiCalls";
+import { useSearchParams } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Auth = () => {
   const [isError, setIsError] = useState(false);
@@ -17,6 +19,16 @@ const Auth = () => {
       storeToastError({ errorMessage: error });
     }
   }, [isError, error]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    if (searchParams.get("token")) {
+      Cookies.set("token", searchParams?.get("token"), {
+        expires: 20,
+      });
+      setSearchParams({});
+    }
+  }, [searchParams]);
 
   const handleLogin = async () => {
     await loginRequest({
