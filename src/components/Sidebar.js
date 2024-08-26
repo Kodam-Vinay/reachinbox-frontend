@@ -3,6 +3,8 @@ import { SIDEBAR_LINKS } from "../utils/constants";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cloneElement, useState } from "react";
 import Cookies from "js-cookie";
+import SidebarAppLogo from "../svgs/SidebarAppLogo";
+import SidebarAppLogoWhite from "../svgs/SidebarAppLogoWhite";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ const Sidebar = () => {
         >
           {index === 0 ? (
             <div className={`mb-16`}>
-              {cloneElement(SIDEBAR_LINKS[eachLink].icon)}
+              {isDarkMode ? <SidebarAppLogo /> : <SidebarAppLogoWhite />}
             </div>
           ) : (
             <div
@@ -73,7 +75,9 @@ const Sidebar = () => {
         {isPopupOpen && (
           <button
             onClick={() => handleLogout()}
-            className="hover:bg-red-600 absolute bottom-0 mb-10 ml-10 bg-white px-5 py-2 rounded-md"
+            className={`hover:bg-red-600 absolute bottom-0 mb-10 ml-10 bg-white px-5 py-2 rounded-md ${
+              isDarkMode ? "bg-white text-black" : "bg-gray-700 text-white"
+            }`}
           >
             Logout
           </button>

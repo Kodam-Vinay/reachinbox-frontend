@@ -25,3 +25,23 @@ export const getRequest = async ({ apiUrl, setError, setIsError, token }) => {
     setError(error.message);
   }
 };
+
+export const deleteRequest = async ({
+  apiUrl,
+  setError,
+  setIsError,
+  token,
+}) => {
+  try {
+    const response = await axios.delete(API_URL + apiUrl, {
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    setIsError(true);
+    setError(error.message);
+  }
+};

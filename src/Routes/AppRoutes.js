@@ -5,6 +5,9 @@ import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import AutherizationProtectedRoute from "../protectedRoutes/AutherizationProtectedRoute";
 import AuthProtectedRoute from "../protectedRoutes/AuthProtectedRoute";
+import { SIDEBAR_LINKS } from "../utils/constants";
+import Inbox from "../pages/Inbox";
+import MessageProtectedRoute from "../protectedRoutes/MessageProtectedRoute";
 
 const AppRoutes = () => {
   const browserRouter = createBrowserRouter([
@@ -14,14 +17,32 @@ const AppRoutes = () => {
       errorElement: <ErrorPage />,
       children: [
         {
-          path: "/",
-          element: <Home />,
+          path: SIDEBAR_LINKS.home.path,
+          element: (
+            <AutherizationProtectedRoute>
+              <Home />
+            </AutherizationProtectedRoute>
+          ),
+        },
+        {
+          path: SIDEBAR_LINKS.inbox.path,
+          element: (
+            <AutherizationProtectedRoute>
+              <MessageProtectedRoute>
+                <Inbox />
+              </MessageProtectedRoute>
+            </AutherizationProtectedRoute>
+          ),
         },
       ],
     },
     {
       path: "/auth",
-      element: <Auth />,
+      element: (
+        <AuthProtectedRoute>
+          <Auth />
+        </AuthProtectedRoute>
+      ),
     },
   ]);
   return <RouterProvider router={browserRouter} />;

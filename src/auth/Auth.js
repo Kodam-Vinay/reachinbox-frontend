@@ -32,7 +32,8 @@ const Auth = () => {
 
   const handleLogin = async () => {
     await loginRequest({
-      apiUrl: "auth/google-login?redirect_to=http://localhost:3000",
+      apiUrl:
+        "auth/google-login?redirect_to=https://reachinbox-frontend-one.vercel.app/",
       setError,
       setIsError,
     });

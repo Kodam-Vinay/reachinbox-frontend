@@ -2,29 +2,32 @@ import { useEffect, useState } from "react";
 import useGetData from "../hooks/useGetData";
 import { storeToastError } from "../utils/constants";
 import EachSidebarMessage from "./EachSidebarMessage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MessegesSidebarFirstPart from "./MessegesSidebarFirstPart";
+import { storeAllMessages } from "../redux/slices/messageSlice";
 
 const MessagesListSidebar = () => {
+  const dispatch = useDispatch();
   const isDarkMode = useSelector(
     (store) => store?.persistSliceReducer?.theme?.isDarkMode
   );
+  const activeMessage = useSelector((store) => store?.message?.activeMessage);
+  const allMessages = useSelector((store) => store?.message?.allMessages);
 
   const handleRefresh = () => {
     window.location.reload();
   };
 
-  //   const [data, setData] = useState({});
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
   const [loading, setLoading] = useState(false);
-  //   useGetData({
-  //     apiUrl: "onebox/list",
-  //     setData,
-  //     setError,
-  //     setIsError,
-  //     setLoading,
-  //   });
+  useGetData({
+    apiUrl: "onebox/list",
+    setData: (data) => dispatch(storeAllMessages(data?.data?.data)),
+    setError,
+    setIsError,
+    setLoading,
+  });
 
   useEffect(() => {
     if (isError) {
@@ -32,68 +35,32 @@ const MessagesListSidebar = () => {
     }
   }, [isError]);
 
-  const data = [
-    {
-      id: 79605,
-      fromName: "Shaw Adley",
-      fromEmail: "shaw@getmemeetings.com",
-      toName: "",
-      toEmail: "mitrajit2022@gmail.com",
-      cc: [],
-      bcc: [],
-      threadId: 53095,
-      messageId: "<OTIivsmEOEzwFW@getmemeetings.com>",
-      inReplyTo: "<Wj6UkLwo9e7vUp@gmail.com>",
-      references: "<Wj6UkLwo9e7vUp@gmail.com>",
-      subject:
-        "Shaw - following up on our meeting last week... | 7ZG2ZTV 6KG634E",
-      body: "<p>Hi Mitrajit,</p><p>Just wondering if you&rsquo;re still interested.</p><p>Regards,<br/>Shaw Adley</p><p>6KG634E practicecowboy</p>",
-      isRead: true,
-      folder: "INBOX",
-      uid: 594,
-      sentAt: "2022-02-02T04:41:13.000Z",
-      archivedAt: null,
-      deletedAt: null,
-      createdAt: "2024-08-25T04:41:13.000Z",
-      updatedAt: "2024-08-25T04:41:13.000Z",
-    },
-    {
-      id: 79606,
-      fromName: "Shaw Adley",
-      fromEmail: "shaw@getmemeetings.com",
-      toName: "",
-      toEmail: "mitrajit2022@gmail.com",
-      cc: [],
-      bcc: [],
-      threadId: 53096,
-      messageId: "<OTIivsmEOEzwFW@getmemeetings.com>",
-      inReplyTo: "<Wj6UkLwo9e7vUp@gmail.com>",
-      references: "<Wj6UkLwo9e7vUp@gmail.com>",
-      subject: "Test mail",
-      body: "<p>Test mail</p>",
-      isRead: true,
-      folder: "INBOX",
-      uid: 594,
-      sentAt: "2022-02-03T04:41:13.000Z",
-      archivedAt: null,
-      deletedAt: null,
-      createdAt: "2024-08-25T04:41:13.000Z",
-      updatedAt: "2024-08-25T04:41:13.000Z",
-    },
-  ];
-  console.log(data);
   return (
     <div
-      className={`w-[20%] h-full border px-4 pt-4 ${
+      className={`w-[25%] h-full border px-3 pt-4  ${
         isDarkMode ? "border-[#343A40]" : "border-[#DEDEDE]"
       }`}
     >
       <MessegesSidebarFirstPart handleRefresh={handleRefresh} />
-      <hr className="my-2" />
-      {data?.length > 0 && !loading ? (
-        <div className="overflow-y-auto">
-          {data?.map((eachMessage) => (
-            <EachSidebarMessage details={eachMessage} key={eachMessage?.id} />
+      <hr className={`mt-2 ${isDarkMode ? "border-[#33383F]" : ""}`} />
+      {allMessages?.length > 0 && !loading ? (
+        <div className="overflow-auto">
+          {allMessages?.map((eachMessage) => (
+            <div
+              className={`w-full cursor-pointer -mt-2 border-l-2  ${
+                activeMessage?.id === eachMessage?.id
+                  ? "border-[#5C7CFA]"
+                  : "border-transparent"
+              }`}
+              key={eachMessage?.id}
+            >
+              <EachSidebarMessage details={eachMessage} key={eachMessage?.id} />
+              <hr
+                className={`w-full overflow-auto ${
+                  isDarkMode ? "border-[#33383F]" : ""
+                }`}
+              />
+            </div>
           ))}
         </div>
       ) : loading ? (

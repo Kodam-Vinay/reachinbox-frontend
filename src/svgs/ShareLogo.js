@@ -1,4 +1,4 @@
-const ShareLogo = (props) => (
+export const ShareLogo = (props) => (
   <svg
     width={28}
     height={29}

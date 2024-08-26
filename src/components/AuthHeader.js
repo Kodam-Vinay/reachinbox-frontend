@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
-import LoginHeaderDarkLogo from "../svgs/AppLogo.svg";
+import SidebarAppLogo from "../svgs/SidebarAppLogo";
+import SidebarAppLogoWhite from "../svgs/SidebarAppLogoWhite";
 
 export function AuthHeader() {
   const isDarkMode = useSelector(
@@ -11,11 +12,10 @@ export function AuthHeader() {
         isDarkMode ? "bg-[#1F1F1F]" : "bg-[#FFFFFF]"
       } h-[10%] flex flex-col items-center justify-center border-b-[#25262B]`}
     >
-      <img
-        src={LoginHeaderDarkLogo}
-        alt="login_logo"
-        className="bg-blend-multiply"
-      />
+      <div className="flex items-center">
+        {isDarkMode ? <SidebarAppLogo /> : <SidebarAppLogoWhite />}
+        <span className="text-lg font-bold ml-1">REACHINBOX</span>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import DownArrowLogo from "../svgs/DownArrowLogo";
 import { IoMdRefresh } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 
@@ -10,31 +9,9 @@ const MessegesSidebarFirstPart = ({ handleRefresh }) => {
   return (
     <>
       <div className="flex justify-between w-full">
-        <div className="flex flex-col">
-          <h2
-            className="text-[#4285F4] text-lg font-bold flex items-center cursor-pointer
-        "
-          >
-            All Inbox(s)
-            <span className="ml-1">
-              <DownArrowLogo fill="#4285F4" className="h-2" />
-            </span>
-          </h2>
-          <p
-            className={`text-sm ${
-              isDarkMode ? "text-white" : "text-black"
-            } my-1`}
-          >
-            <span className="font-semibold">25/25</span>
-            <span
-              className={`ml-1 text-xs ${
-                isDarkMode ? "text-[#DEDEDE]" : "text-[#343A40]"
-              }`}
-            >
-              Inboxes selected
-            </span>
-          </p>
-        </div>
+        <select className="bg-transparent outline-none text-[#4285F4] font-bold text-lg">
+          <option value="all_inbox">All Inbox</option>
+        </select>
         <button
           onClick={() => handleRefresh()}
           className={`h-6 w-6 flex flex-col items-center justify-center rounded-sm mt-1 ${
@@ -62,7 +39,7 @@ const MessegesSidebarFirstPart = ({ handleRefresh }) => {
       </div>
       <div className={`w-full flex items-center justify-between my-3`}>
         <p
-          className={`text-sm ${
+          className={`text-xs mdl:text-sm ${
             isDarkMode ? "text-[#DEDEDE]" : "text-[#343A40]"
           } font-bold`}
         >
@@ -75,20 +52,10 @@ const MessegesSidebarFirstPart = ({ handleRefresh }) => {
           </span>
           New Replies
         </p>
-        <p
-          className={`text-xs font-bold flex items-center cursor-pointer ${
-            isDarkMode ? "text-[#DEDEDE]" : "text-[#343A40]"
-          } 
-        `}
-        >
-          Newest
-          <span className="ml-1">
-            <DownArrowLogo
-              fill={isDarkMode ? "#DEDEDE" : "#343A40"}
-              className="h-2"
-            />
-          </span>
-        </p>
+        <select className="bg-transparent outline-none">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+        </select>
       </div>
     </>
   );

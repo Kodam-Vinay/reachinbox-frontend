@@ -7,8 +7,8 @@ const ErrorPage = () => {
   );
   return (
     <div
-      className={`flex flex-col space-y-3 items-center w-full h-full ${
-        isDarkMode ? "text-white" : "text-black"
+      className={`flex flex-col space-y-3 items-center justify-center w-full h-full ${
+        isDarkMode ? "text-white bg-black" : "text-black bg-white"
       }`}
     >
       <h1 className="text-xl font-bold text-center">Something Went Wrong</h1>

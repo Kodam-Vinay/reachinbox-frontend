@@ -1,4 +1,4 @@
-const OutboxLogo = (props) => (
+const InboxLogo = (props) => (
   <svg
     width={28}
     height={29}
@@ -13,4 +13,4 @@ const OutboxLogo = (props) => (
     />
   </svg>
 );
-export default OutboxLogo;
+export default InboxLogo;
